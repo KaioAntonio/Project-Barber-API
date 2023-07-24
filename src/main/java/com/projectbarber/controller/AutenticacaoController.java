@@ -1,5 +1,6 @@
 package com.projectbarber.controller;
 
+import com.projectbarber.config.exception.CustomException;
 import com.projectbarber.config.security.DadosTokenJWT;
 import com.projectbarber.config.security.TokenService;
 import com.projectbarber.domain.user.AuthenticationService;
@@ -42,7 +43,7 @@ public class AutenticacaoController {
             return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
         }
         catch (Exception e){
-            return new ResponseEntity<>("Erro ao realizar o login!" + e, HttpStatus.BAD_REQUEST);
+            throw  new CustomException("Erro ao efetuar o login!");
         }
     }
 
