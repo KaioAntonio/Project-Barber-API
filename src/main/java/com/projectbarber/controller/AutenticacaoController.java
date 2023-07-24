@@ -32,15 +32,21 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid AuthenticationDTO dados) {
-        var authenticationToken = new UsernamePasswordAuthenticationToken(dados.getEmail(), dados.getPassword());
-        var authentication = manager.authenticate(authenticationToken);
+        try {
+            var authenticationToken = new UsernamePasswordAuthenticationToken(dados.getEmail(), dados.getUserPassword());
 
-        var tokenJWT = tokenService.gerarToken((User) authentication.getPrincipal());
+            var authentication = manager.authenticate(authenticationToken);
 
-        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+            var tokenJWT = tokenService.gerarToken((User) authentication.getPrincipal());
+
+            return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+        }
+        catch (Exception e){
+            return new ResponseEntity<>("Erro ao realizar o login!" + e, HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PostMapping("/cadastrar/")
+    @PostMapping("/cadastrar")
     public ResponseEntity<UserDTO> cadastrar(@RequestBody @Valid CreateUserDTO dados) {
         return new ResponseEntity<>(authenticationService.cadastrar(dados), HttpStatus.CREATED);
     }

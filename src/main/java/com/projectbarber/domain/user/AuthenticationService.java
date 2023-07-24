@@ -29,7 +29,7 @@ public class AuthenticationService implements UserDetailsService {
     public UserDTO cadastrar(CreateUserDTO createUserDTO) {
         User user = objectMapper.convertValue(createUserDTO, User.class);
         String encode = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encode);
+        user.setUserPassword(encode);
         userRepository.save(user);
         UserDTO userDTO = objectMapper.convertValue(user, UserDTO.class);
         return userDTO;

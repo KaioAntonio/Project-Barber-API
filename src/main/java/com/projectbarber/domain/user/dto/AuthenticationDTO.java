@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class AuthenticationDTO {
     String email;
-    String password;
+    String userPassword;
 }

@@ -1,16 +1,16 @@
 package com.projectbarber.domain.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
-@Entity(name = "Usuario")
+@Table(name = "Usuario")
+@Entity(name = "User")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,12 +23,17 @@ public class User implements UserDetails {
     private Long id;
     private String name;
     private String email;
-    private String password;
+    private String userPassword;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getPassword() {
+        return userPassword;
     }
 
     @Override
@@ -36,28 +41,25 @@ public class User implements UserDetails {
         return email;
     }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

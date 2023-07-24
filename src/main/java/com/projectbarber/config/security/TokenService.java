@@ -22,7 +22,7 @@ public class TokenService {
         try {
             var algoritmo = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("API Voll.med")
+                    .withIssuer("API Project Barber")
                     .withSubject(user.getEmail())
                     .withExpiresAt(dataExpiracao())
                     .sign(algoritmo);

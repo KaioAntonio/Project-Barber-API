@@ -7,6 +7,6 @@ public class CreateUserDTO {
 
     String name;
     String email;
-    String password;
+    String userPassword;
 
 }
