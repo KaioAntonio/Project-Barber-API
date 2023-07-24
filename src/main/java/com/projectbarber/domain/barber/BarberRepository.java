@@ -4,7 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BarberRepository extends JpaRepository<Barber, Long> {
-    //find by active
-    Page<Barber> findByActive(boolean isActive);
-    
+
+    Page<Barber> findAllByActive(Boolean active, org.springframework.data.domain.Pageable pageable);
+
+    Barber getReferenceById(Long idBarbeiro);
 }

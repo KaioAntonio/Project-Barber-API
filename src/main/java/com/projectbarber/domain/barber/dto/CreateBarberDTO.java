@@ -1,22 +1,20 @@
 package com.projectbarber.domain.barber.dto;
 
-import com.projectbarber.domain.user.dto.UserDTO;
-
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class CreateBarberDTO extends UserDTO {
+public class CreateBarberDTO{
 
     @NotBlank (message = "O campo CPF é obrigatório!")
-    @Pattern(regexp = "[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}", message = "O CPF deve estar no formato 000.000.000-00")
-    private String cpf;
+    String cpf;
 
-    private Boolean active = true;
+    @NotNull (message = "O campo id usuario é obrigatório!")
+    Long idUser;
 
-    public Long getIdUser() {
-        return super.getId();
-    }
+    Short active = 1;
+
+    
     
 }

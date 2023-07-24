@@ -8,8 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,14 +19,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Table(name = "Barber")
+@Table(name = "Barbeiro")
 @Entity(name = "Barber")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "idBarbeiro", callSuper = false)
-public class Barber extends User{
+public class Barber{
 
     public Barber(@Valid CreateBarberDTO dados) {
         this.cpf = dados.getCpf();
@@ -45,11 +45,11 @@ public class Barber extends User{
     private Long idBarbeiro;
 
     @OneToOne
-    @PrimaryKeyJoinColumn(name = "ID_User")
-    private  User user;
+    @JoinColumn(name = "ID_User")
+    private User user;
 
     @Column(name = "Active")
-    private Boolean active;
+    private Short active;
 
     @Column(name = "CPF")
     private String cpf;
