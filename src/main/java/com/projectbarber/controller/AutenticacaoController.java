@@ -83,7 +83,7 @@ public class AutenticacaoController {
     )
     @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Campos de entrada: <br>" +
             "<ul>" +
-            "<li>**__nome   '__**: Nome do Usuário.</li>" +
+            "<li>**__nome__**: Nome do Usuário.</li>" +
             "<ul>"+
             "<li>**Quantidade mínima de 1 character e máxima 255.**</li>" +
             "<li>**O campo não pode ser vazio**</li>" +
